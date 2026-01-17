@@ -4,7 +4,7 @@ import AppLayout from '../layout/AppLayout';
 
 const ProtectedRoute = () => {
 
-    const isAuthenticated = true;
+    const isAuthenticated = false;
     const loading = false;
 
     if(loading){
