@@ -23,7 +23,7 @@ const errorHandler = (err, req, res, next) => {
     }
 
     // Multer file size error
-    if(err.code === 'LIMIT_FILE_SIZE'){
+    if(err.code === 'MAX_FILE_SIZE'){
         message = 'File size exceeds the maximum limit of 10MB';
         statusCode = 400;
     }
@@ -48,7 +48,7 @@ const errorHandler = (err, req, res, next) => {
         success: false,
         error: message,
         statusCode,
-        ...err(process.env.NODE_ENV === 'development' && { stack: err.stack })
+        ...(process.env.NODE_ENV === 'development' ? { stack: err.stack } : {})
     });
 
 }
