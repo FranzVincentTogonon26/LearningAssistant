@@ -19,7 +19,7 @@ export const register = async ( req, res, next ) => {
         const { username, email, password } = req.body;
 
         // Check if User Exits
-        const userExists = await User.findOne({ $or: [{email}] });
+        const userExists = await User.findOne({ email });
 
         if(userExists){
             return res.status(400).json({
@@ -53,6 +53,8 @@ export const register = async ( req, res, next ) => {
             },
             message: 'User registered successfully'
         });
+
+
 
     } catch(error) {
         next(error);
