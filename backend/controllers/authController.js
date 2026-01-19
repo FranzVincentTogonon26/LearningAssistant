@@ -55,8 +55,6 @@ export const register = async ( req, res, next ) => {
             message: 'User registered successfully'
         });
 
-
-
     } catch(error) {
         next(error);
     }
@@ -159,10 +157,19 @@ export const updateProfile = async( req, res, next ) => {
         const { username, email, profileImage } = req.body;
 
         const user = await User.findById(req.user._id);
+        
+        if (!user) {
+            return res.status(404).json({
+                success: false,
+                error: 'User not found'
+            });
+        }
 
-        if(username) user.username = username;
-        if(email) user.email = email;
-        if(profileImage) user.profileImage = profileImage;
+        if (username) user.username = username;
+        if (email) user.email = email;
+        if (profileImage) user.profileImage = profileImage;
+
+        console.log(user)
 
         await user.save();
 
@@ -218,7 +225,7 @@ export const changePassword = async( req, res, next ) => {
 
         res.status(200).json({
             success: true,
-            message: 'password changed succesfully'
+            message: 'Password changed successfully'
         });
 
     } catch(error) {
