@@ -22,7 +22,7 @@ const quizSchema = new mongoose.Schema({
             required: true
         },
         options: {
-            type: [Sting],
+            type: [String],
             required: true,
             validate: [ array => array.lenght === 4, 'Must have exactly 4 options' ]
         },
@@ -51,7 +51,7 @@ const quizSchema = new mongoose.Schema({
         },
         isCorrect: {
             type: Boolean,
-            required: trusted,
+            required: true,
         },
         answeredAt: {
             type: Date,
