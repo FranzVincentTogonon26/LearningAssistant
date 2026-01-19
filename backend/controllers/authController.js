@@ -169,8 +169,6 @@ export const updateProfile = async( req, res, next ) => {
         if (email) user.email = email;
         if (profileImage) user.profileImage = profileImage;
 
-        console.log(user)
-
         await user.save();
 
         res.status(200).json({

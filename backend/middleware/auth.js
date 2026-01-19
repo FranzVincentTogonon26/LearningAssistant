@@ -4,7 +4,7 @@ import User from '../models/User.js'
 const protect = async ( req, res, next ) => {
 
     // Check if token exists in Authorization Header
-    if (!req.headers.authorization || !req.headers.authorization.startsWith('Bearer')) {
+    if (!req.headers.authorization && !req.headers.authorization.startsWith('Bearer')) {
         return res.status(401).json({
             success: false,
             error: 'Not authorized. No token provided',
