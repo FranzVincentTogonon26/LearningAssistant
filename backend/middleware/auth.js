@@ -4,7 +4,15 @@ import User from '../models/User.js'
 const protect = async ( req, res, next ) => {
 
     // Check if token exists in Authorization Header
-    if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
+    if (!req.headers.authorization || !req.headers.authorization.startsWith('Bearer')) {
+        return res.status(401).json({
+            success: false,
+            error: 'Not authorized. No token provided',
+            statusCode: 401
+        });
+    }
+
+    try {
 
         let token = req.headers.authorization.split(' ')[1];
 
@@ -16,43 +24,43 @@ const protect = async ( req, res, next ) => {
             });
         }
 
-        try {
-            // Verify Token
-            const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-            req.user = await User.findById(decoded.id).select('-password');
+        // Verify Token
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-            if (!req.user) {
-                return res.status(401).json({
-                    success: false,
-                    error: 'User not Found',
-                    statusCode: 401
-                });
-            }
+        // console.log(decoded)
+        // { id: '696dd1522340b9fa8bb421dc', iat: 1768815986, exp: 1769420786 }
 
-            next();
+        req.user = await User.findById(decoded.id).select('-password');
 
-        } catch (error) {
-
-            console.log('Auth middleware error:', error.message);
-
-            if (error.name === 'TokenExpiredError') {
-                return res.status(401).json({
-                    success: false,
-                    error: 'Token has Expired.',
-                    statusCode: 401
-                });
-            } 
-
+        if (!req.user) {
             return res.status(401).json({
                 success: false,
-                error: 'Not authorized, Token failed',
+                error: 'User not Found',
                 statusCode: 401
             });
         }
-    }
 
-   
+        next();
+
+    } catch (error) {
+
+        console.log('Auth middleware error:', error.message);
+
+        if (error.name === 'TokenExpiredError') {
+            return res.status(401).json({
+                success: false,
+                error: 'Token has Expired.',
+                statusCode: 401
+            });
+        }
+
+        return res.status(401).json({
+            success: false,
+            error: 'Not authorized, Token failed',
+            statusCode: 401
+        });
+    }
 
 }
 
