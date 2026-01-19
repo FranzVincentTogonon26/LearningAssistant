@@ -3,15 +3,20 @@ import User from '../models/User.js'
 
 const protect = async ( req, res, next ) => {
 
-    let token;
-
     // Check if token exists in Authorization Header
     if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
 
+        let token = req.headers.authorization.split(' ')[1];
+
+        if (!token) {
+            return res.status(401).json({
+                success: false,
+                error: 'Not Authorized. No Token',
+                statusCode: 401
+            });
+        }
+
         try {
-
-            token = req.headers.authorization.split(' ')[1];
-
             // Verify Token
             const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
@@ -47,13 +52,7 @@ const protect = async ( req, res, next ) => {
         }
     }
 
-    if (!token) {
-        return res.status(401).json({
-            success: false,
-            error: 'Not Authorized. No Token',
-            statusCode: 401
-        });
-    }
+   
 
 }
 
