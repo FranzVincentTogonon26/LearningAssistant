@@ -37,7 +37,7 @@ const documentSchema = new mongoose.Schema({
                 type: Number,
                 default: 0
             },
-            chunckIndex: {
+            chunkIndex: {
                 type: Number,
                 required: true
             }
