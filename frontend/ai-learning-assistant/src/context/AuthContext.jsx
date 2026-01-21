@@ -17,7 +17,7 @@ export const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         checkAuthStatus();
-    }), [];
+    }, []);
 
     const checkAuthStatus = async () => {
         try {
@@ -81,3 +81,4 @@ export const AuthProvider = ({ children }) => {
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 
 };
+
