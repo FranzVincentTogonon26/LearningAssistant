@@ -21,4 +21,4 @@ router.post('/chat', chat);
 router.post('/explain-concept', explainConcept); 
 router.get('/chat-history/:documentId', getChatHistory);
 
-export default router;
+export default router; 
