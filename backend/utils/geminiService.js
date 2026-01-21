@@ -1,6 +1,5 @@
 import dotenv from 'dotenv';
 import { GoogleGenAI } from '@google/genai';
-import { count } from 'console';
 
 dotenv.config();
 
@@ -124,14 +123,14 @@ export const generateQuiz = async ( text, numQuestions = 5 ) => {
                 const trimmed = line.trim();
                 if(trimmed.startsWith('Q:')){
                     question = trimmed.substring(2).trim();
-                } else if (trimmed.match(/^0\d:/)) {
+                } else if (trimmed.match(/^O\d:/)) {
                     options.push(trimmed.substring(3).trim());
                 } else if (trimmed.startsWith('C:')){
                     correctAnswer = trimmed.substring(2).trim();
                 } else if (trimmed.startsWith('E:')) {
                     explanation = trimmed.substring(2).trim();
                 } else if (trimmed.startsWith('D:')) {
-                    const diff = line.substring(2).trim().toLowerCase();
+                    const diff = trimmed.substring(2).trim().toLowerCase();
                     if( ['easy', 'medium', 'hard' ].includes(diff) ){
                         difficulty = diff;
                     }
