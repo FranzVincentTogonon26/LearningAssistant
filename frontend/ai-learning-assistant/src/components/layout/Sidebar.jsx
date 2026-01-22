@@ -39,9 +39,9 @@ const Sidebar = ({isSidebarOpen, toggleSidebar}) => {
             </div>
             <h1 className="text-sm md:text-base font-bold text-slate-900 tracking-tight">AI Learning Assistant</h1>
           </div>
-          <button className="md:hidden text-slate-500 hover:text-slate-900">
+          {/* <button className="md:hidden text-slate-500 hover:text-slate-900">
             <X size={24} />
-          </button>
+          </button> */}
         </div>
 
         {/* Navigation */}
@@ -50,7 +50,6 @@ const Sidebar = ({isSidebarOpen, toggleSidebar}) => {
             <NavLink
               key={link.to}
               to={link.to}
-              onClick={toggleSidebar}
               className={ 
                 ({ isActive }) => 
                   `group flex items-center gap-3 px-4 py-2.5 text-sm font-semibold rounded-xl transition-all duration-200 

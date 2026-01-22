@@ -2,8 +2,27 @@ import React from 'react'
 
 const Spinner = () => {
   return (
-    <div className='flex items-center justify-center p-8'>
-        <svg className='h-6 w-6' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 150'><path fill='none' stroke='#FF156D' stroke-width='15' stroke-linecap='round' stroke-dasharray='300 385' stroke-dashoffset='0' d='M275 75c0 31-27 50-50 50-58 0-92-100-150-100-28 0-50 22-50 50s23 50 50 50c58 0 92-100 150-100 24 0 50 19 50 50Z'><animate attributeName='stroke-dashoffset' calcMode='spline' dur='2' values='685;-685' keySplines='0 0 1 1' repeatCount='indefinite'></animate></path></svg>
+    <div className="flex items-center justify-center h-screen">
+      <svg
+        className='animate-spin h-6 w-6 text-[#00d492]'
+        xmlns='http//www.w3.org/2000/svg'
+        fill='none'
+        viewBox='0 0 24 24'
+        >
+          <circle
+            className=''
+            cx="12"
+            cy="12"
+            r="10"
+            stroke='currentColor'
+            strokeWidth="3"
+            ></circle>
+            <path
+              className='opacity-75'
+              fill='currentColor'
+              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.93813-2.647z"
+            ></path>
+        </svg>
     </div>
   )
 }
