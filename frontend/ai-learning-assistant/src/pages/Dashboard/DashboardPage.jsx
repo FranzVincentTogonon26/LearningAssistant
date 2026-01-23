@@ -129,23 +129,23 @@ const DashboardPage = () => {
                   .map((activity, index) => (
                     <div className="group flex items-center justify-center p-4 rounded-xl bg-slate-50/50 border border-slate-200/60 hover:bg-white hover:border-slate-300/60 hover:shadow-md transition-all duration-200" key={activity.id || index}>
                          <div className="flex-1 min-w-0">
-                          <div className="flex items-center gap-2 mb-1">
 
-                            <div 
-                              className={`w-2 h-2 rounded-full ${ activity.type === 'documents' ? 'bg-linear-to-r from-blue-400 to-cyan-500' : 'bg-linear-to-r from-emerald-400 to-teal-500' }`}
-                            >
+                            <div className="flex items-center gap-2 mb-1">
+                              <div 
+                                className={`w-2 h-2 rounded-full ${ activity.type === 'documents' ? 'bg-linear-to-r from-blue-400 to-cyan-500' : 'bg-linear-to-r from-emerald-400 to-teal-500' }`}
+                              />
                               <p className="text-sm font-medium text-slate-900 truncate">
-                                { activity.type === 'document' ? 'Accessed Document:' : 'Attempted Quiz:' }
+                                { activity.type === 'documents' ? 'Accessed Document: ' : 'Attempted Quiz: ' }
                                 <span className="text-slate-700">{activity.description}</span>
                               </p>
                             </div>
+                            
                             <p className="text-xs text-slate-500 pl-4">{new Date(activity.timestamp).toLocaleString()}</p>
 
                           </div>
                           { activity.link && (
-                            <a href={activity.link} className="ml-4 px-4 text-xs font-semibold text-emerald-600 hover:text-emerald-700 hover:bg-emerald-50 rounded-lg transition-all duration-200 whitespace-nowrap">View</a>
+                            <a href={activity.link} className="ml-4 px-4 py-2 text-xs font-semibold text-emerald-600 hover:text-emerald-700 hover:bg-emerald-50 rounded-lg transition-all duration-200 whitespace-nowrap">View</a>
                           )}
-                         </div>
                     </div>
                   ))}
               </div>
