@@ -11,7 +11,7 @@ const Tabs = ({
             <nav className="flex gap-2">
                 { tabs.map((tab) => (
                     <button 
-                        className={`relative pb-4 px-6 text-sm font-semibold transition-all duration-200 ${ activeTab === tab.name ? 'text-emerald-600' : 'text-slate-600 hover:text-slate-900' }`}
+                        className={`relative pb-4 px-2 md:px-6 text-sm font-semibold transition-all duration-200 ${ activeTab === tab.name ? 'text-emerald-600' : 'text-slate-600 hover:text-slate-900' }`}
                         key={tab.name}
                         onClick={() => setActiveTab(tab.name)}
                     >
