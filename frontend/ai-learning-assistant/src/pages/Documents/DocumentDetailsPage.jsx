@@ -8,6 +8,8 @@ import PageHeader from '../../components/common/PageHeader'
 import Tabs from '../../components/common/Tabs'
 import { BASE_URL } from "../../utils/apiPaths";
 import ChatInterface from '../../components/chat/ChatInterface'
+import AIActions from '../../components/ai/AIActions'
+import FlashcardManager from '../../components/flashcards/FlashcardManager'
 
 const DocumentDetailsPage = () => {
 
@@ -80,7 +82,7 @@ const DocumentDetailsPage = () => {
         <div className="bg-gray-100 p-1">
           <iframe 
             src={pdfUrl}
-            frameborder="0"
+            // frameBorder="0"
             className='w-full h-[70vh] bg-white rounded border-gray-300'
             title='PDF Viewer'
             style={{
@@ -99,11 +101,11 @@ const DocumentDetailsPage = () => {
   };
 
   const renderAIActions = () => {
-    return "renderAIActions"
+    return <AIActions />
   };
 
   const renderFlashcardTab = () => {
-    return "renderFlashCardTab"
+    return <FlashcardManager documentId={id} />
   };
 
   const renderQuizzesTab = () => {

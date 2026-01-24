@@ -33,7 +33,7 @@ const Tabs = ({
             { tabs.map((tab) => {
                 if(tab.name === activeTab){
                     return (
-                        <div className="animate-in fade-in duration-300">
+                        <div className="animate-in fade-in duration-300" key={tab} >
                             {tab.content}
                         </div>
                     );

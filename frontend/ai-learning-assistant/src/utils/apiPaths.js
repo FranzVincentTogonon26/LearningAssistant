@@ -16,7 +16,7 @@ export const API_PATHS = {
         DELETE_DOCUMENT: ( id ) => `/api/documents/${id}`
     },
     AI: {
-        GENERATE_FLASHCARD: "/api/ai/generate-flashcard",
+        GENERATE_FLASHCARD: "/api/ai/generate-flashcards",
         GENERATE_QUIZ: "/api/ai/generate-quiz",
         GENERATE_SUMMARY: "/api/ai/generate-summary",
         CHAT: "/api/ai/chat",
