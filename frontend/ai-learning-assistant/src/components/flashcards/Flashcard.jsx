@@ -9,9 +9,9 @@ const Flashcard = ({ flashcard }) => {
       setIsFlipped(!isFlipped);
   }
   const difficultyColor = {
-    easy: 'text-amber-600',
-    medium: 'text-blue-600',
-    hard: 'text-red-500',
+    easy: 'from-emerald-400 to-teal-500 shadow-blue-500/25',
+    medium: 'from-blue-400 to-cyan-500 shadow-purple-500/25',
+    hard: 'from-purple-400 to-pink-500 shadow-emerald-500/25',
   };
 
   return (
@@ -33,8 +33,8 @@ const Flashcard = ({ flashcard }) => {
           }}
         >
           <div className="flex items-start justify-between">
-            <div className="flex items-center gap-1.5 px-2.5 py-1.5 bg-purple-50 rounded-lg uppercase">
-              <span className={`text-sm font-semibold ${ difficultyColor[flashcard?.difficulty] || '' } `}>{flashcard?.difficulty}</span>
+            <div className={`flex items-center gap-1.5 px-2 py-1.5 bg-linear-to-br ${ difficultyColor[flashcard?.difficulty] || '' } shadow-sm rounded-sm uppercase`}>
+              <span className="text-xs font-semibold text-white" >{flashcard?.difficulty}</span>
             </div>
           </div>
 
@@ -57,7 +57,8 @@ const Flashcard = ({ flashcard }) => {
           style={{
             backfaceVisibility: 'hidden',
             WebkitBackfaceVisibility: 'hidden',
-            transform: 'rotateY(180deg)'
+            transform: 'rotateY(180deg)',
+            height: '370px'
           }}
         >
           {/* Answer Content */}
@@ -70,7 +71,6 @@ const Flashcard = ({ flashcard }) => {
             <span>Click to see question</span>
           </div>
         </div>
-
       </div>
     </div>
   );
