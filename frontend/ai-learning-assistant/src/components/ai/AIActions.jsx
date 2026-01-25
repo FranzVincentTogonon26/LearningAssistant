@@ -25,7 +25,7 @@ const AIActions = () => {
       setIsModalOpen(true);
 
     } catch (error) {
-      console.error(error);
+      console.error('thiss', error);
       toast.error('Failed to Generate Summary.');
     } finally {
       setLoadingAction(null);

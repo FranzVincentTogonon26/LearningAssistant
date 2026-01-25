@@ -10,6 +10,7 @@ import { BASE_URL } from "../../utils/apiPaths";
 import ChatInterface from '../../components/chat/ChatInterface'
 import AIActions from '../../components/ai/AIActions'
 import FlashcardManager from '../../components/flashcards/FlashcardManager'
+import QuizManager from '../../components/quizzes/QuizManager'
 
 const DocumentDetailsPage = () => {
 
@@ -109,7 +110,7 @@ const DocumentDetailsPage = () => {
   };
 
   const renderQuizzesTab = () => {
-    return "renderQuizzesTab"
+    return <QuizManager documentId={id} />
   };
 
   const tabs = [
