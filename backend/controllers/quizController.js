@@ -57,6 +57,8 @@ export const submitQuiz = async ( req, res, next ) => {
 
         const { answers } = req.body;
 
+        console.log('BackEnd Submit Result:', req.body)
+
         if(!Array.isArray(answers)){
             return res.status(400).json({
                 succes: false,
@@ -69,9 +71,6 @@ export const submitQuiz = async ( req, res, next ) => {
             _id: req.params.id,
             userId: req.user._id
         });
-
-        console.log(req.params.id)
-        console.log(req.user._id)
 
         if(!quiz){
             return res.status(404).json({
@@ -88,8 +87,6 @@ export const submitQuiz = async ( req, res, next ) => {
                 statusCode: 400
             });
         }
-
-        console.log('help')
 
         // Process answers
         let correctCount = 0;
@@ -151,6 +148,8 @@ export const getQuizResults = async ( req, res, next ) => {
         _id: req.params.id,
         userId: req.user._id
        }).populate('documentId', 'title');
+
+       console.log('BackEnd Log:', quiz)
 
        if(!quiz){
             return res.status(404).json({
