@@ -35,7 +35,7 @@ export const getQuizById = async ( req, res, next ) => {
         if(!quiz){
             return res.status(404).json({
                 succes: false,
-                error: 'Quiz not found',
+                message: 'Quiz not found',
                 statusCode: 404
             });
         }
@@ -57,12 +57,10 @@ export const submitQuiz = async ( req, res, next ) => {
 
         const { answers } = req.body;
 
-        console.log('BackEnd Submit Result:', req.body)
-
-        if(!Array.isArray(answers)){
+        if(!Array.isArray(answers) || answers.length === 0){
             return res.status(400).json({
                 succes: false,
-                error: 'Please provide answer array',
+                message: 'Please provide answer array',
                 statusCode: 400
             });
         }
@@ -72,10 +70,11 @@ export const submitQuiz = async ( req, res, next ) => {
             userId: req.user._id
         });
 
+
         if(!quiz){
             return res.status(404).json({
                 succes: false,
-                error: 'Quiz not found',
+                message: 'Quiz not found',
                 statusCode: 404
             });
         }
@@ -83,7 +82,7 @@ export const submitQuiz = async ( req, res, next ) => {
         if(quiz.completedAt){
             return res.status(400).json({
                 succes: false,
-                error: 'Quiz already completed',
+                message: 'Quiz already completed',
                 statusCode: 400
             });
         }
@@ -121,6 +120,8 @@ export const submitQuiz = async ( req, res, next ) => {
         quiz.score = score;
         quiz.completedAt = new Date();
 
+        await quiz.save();
+
         res.status(200).json({
             succes: true,
             data: {
@@ -149,12 +150,10 @@ export const getQuizResults = async ( req, res, next ) => {
         userId: req.user._id
        }).populate('documentId', 'title');
 
-       console.log('BackEnd Log:', quiz)
-
        if(!quiz){
             return res.status(404).json({
                 succes: false,
-                error: 'Quiz not found',
+                message: 'Quiz not found',
                 statusCode: 404
             });
         }
@@ -162,7 +161,7 @@ export const getQuizResults = async ( req, res, next ) => {
         if(!quiz.completedAt){
             return res.status(400).json({
                 succes: false,
-                error: 'Quiz not completed yet',
+                message: 'Quiz not completed yet',
                 statusCode: 400
             });
         }
@@ -217,7 +216,7 @@ export const deleteQuiz = async ( req, res, next ) => {
        if(!quiz){
             return res.status(404).json({
                 succes: false,
-                error: 'Quiz not found',
+                message: 'Quiz not found',
                 statusCode: 404
             });
         }

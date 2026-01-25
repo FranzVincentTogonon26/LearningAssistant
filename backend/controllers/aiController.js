@@ -18,7 +18,7 @@ export const generateFlashcards = async ( req, res, next ) => {
         if(!documentId){
             return res.status(400).json({
                 success: false,
-                error: 'Please provide documentId',
+                message: 'Please provide documentId',
                 statusCode: 400
             });
         }
@@ -32,7 +32,7 @@ export const generateFlashcards = async ( req, res, next ) => {
         if(!document){
             return res.status(404).json({
                 success: false,
-                error: 'Document not found or not ready',
+                message: 'Document not found or not ready',
                 statusCode: 404
             });
         }
@@ -81,7 +81,7 @@ export const generateQuiz = async ( req, res, next ) => {
         if(!documentId){
             return res.status(400).json({
                 success: false,
-                error: 'Please provide documentId',
+                message: 'Please provide documentId',
                 statusCode: 400
             });
         }
@@ -95,7 +95,7 @@ export const generateQuiz = async ( req, res, next ) => {
         if(!document){
             return res.status(404).json({
                 success: false,
-                error: 'Document not found or not ready',
+                message: 'Document not found or not ready',
                 statusCode: 404
             });
         }
@@ -142,7 +142,7 @@ export const generateSummary = async ( req, res, next ) => {
         if(!documentId){
             return res.status(400).json({
                 success: false,
-                error: 'Please provide documentId',
+                message: 'Please provide documentId',
                 statusCode: 400
             });
         }
@@ -156,7 +156,7 @@ export const generateSummary = async ( req, res, next ) => {
         if(!document){
            return res.status(404).json({
             success: false,
-            error: 'Document not found or not ready',
+            message: 'Document not found or not ready',
             statusCode: 404
            }); 
         }
@@ -193,7 +193,7 @@ export const chat = async ( req, res, next ) => {
         if( !documentId || !question ){
             return res.status(400).json({
                 success: false,
-                error: 'Please provide documentId and question',
+                message: 'Please provide documentId and question',
                 statusCode: 400
             });
         }
@@ -207,7 +207,7 @@ export const chat = async ( req, res, next ) => {
         if( !document){
             return res.status(404).json({
                 success: false,
-                error: 'Document not found or not ready',
+                message: 'Document not found or not ready',
                 statusCode: 404
             });
         }
@@ -281,7 +281,7 @@ export const explainConcept = async ( req, res, next ) => {
         if( !documentId || !concept ){
             return res.status(400).json({
                 success: false,
-                error: 'Please provide documentId and concept',
+                message: 'Please provide documentId and concept',
                 statusCode: 400
             });
         }
@@ -295,7 +295,7 @@ export const explainConcept = async ( req, res, next ) => {
         if( !document){
             return res.status(404).json({
                 success: false,
-                error: 'Document not found or not ready',
+                message: 'Document not found or not ready',
                 statusCode: 404
             });
         }
@@ -336,7 +336,7 @@ export const getChatHistory = async ( req, res, next ) => {
         if(!documentId){
             return res.status(400).json({
                 success: false,
-                error: 'Please provide documentId',
+                message: 'Please provide documentId',
                 statusCode: 400
             });
         }

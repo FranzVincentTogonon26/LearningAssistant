@@ -95,8 +95,8 @@ const QuizTakePage = () => {
   }
 
   const currentQuestion = quiz.questions[currentQuestionIndex];
-  const isAnswered = selectedAnswers.hasOwnProperty(currentQuestion._id);
-  //  const isAnswered = selectedAnswers[currentQuestion._id] !== undefined;
+  // const isAnswered = selectedAnswers.hasOwnProperty(currentQuestion._id);
+  // const isAnswered = selectedAnswers[currentQuestion._id] !== undefined;
   const answeredCount = Object.keys(selectedAnswers).length;
 
   return (
@@ -246,7 +246,8 @@ const QuizTakePage = () => {
          <div className="mt-8 flex items-center justify-center gap-2 flex-wrap">
           { quiz.questions.map((_, index) => {
 
-            const isAnsweredQuestion = selectedAnswers.hasOwnProperty(quiz.questions[index]._id);
+            // const isAnsweredQuestion = selectedAnswers.hasOwnProperty(quiz.questions[index]._id);
+            const isAnsweredQuestion = selectedAnswers[quiz.questions[index]._id] !== undefined;
             const isCurrent = index === currentQuestionIndex;
 
             return (

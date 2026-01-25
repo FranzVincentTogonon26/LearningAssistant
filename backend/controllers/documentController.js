@@ -18,7 +18,7 @@ export const uploadDocument = async ( req, res, next ) => {
         if(!req.file){
             return res.status(400).json({
                 success: false,
-                error: 'Please upload a PDF file',
+                message: 'Please upload a PDF file',
                 statusCode: 400
             })
         }
@@ -30,7 +30,7 @@ export const uploadDocument = async ( req, res, next ) => {
             await fs.unlink(req.file.path);
             return res.status(400).json({
                 success: false,
-                error: 'Please provide a document title',
+                message: 'Please provide a document title',
                 statusCode: 400
             })
         }
@@ -166,7 +166,7 @@ export const getDocument = async ( req, res, next ) => {
         if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
             return res.status(404).json({
                 success: false,
-                error: 'Document not found',
+                message: 'Document not found',
                 statusCode: 404
             });
         }
@@ -179,7 +179,7 @@ export const getDocument = async ( req, res, next ) => {
         if( !document ){
             return res.status(404).json({
                 success: false,
-                error: 'Document not found',
+                message: 'Document not found',
                 statusCode: 404
             });
         }
@@ -220,7 +220,7 @@ export const deleteDocument = async ( req, res, next ) => {
         if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
             return res.status(404).json({
                 success: false,
-                error: 'Document not found',
+                message: 'Document not found',
                 statusCode: 404
             });
         }
@@ -233,7 +233,7 @@ export const deleteDocument = async ( req, res, next ) => {
         if( !document ){
             return res.status(404).json({
                 success: false,
-                error: 'Document not found',
+                message: 'Document not found',
                 statusCode: 404
             });
         }

@@ -25,7 +25,7 @@ export const register = async ( req, res, next ) => {
         if(userExists){
             return res.status(400).json({
                 success: false,
-                error: userExists.email === email ? 'Email already registered' : 'Username already taken',
+                message: userExists.email === email ? 'Email already registered' : 'Username already taken',
                 statusCode: 400
             });
         }
@@ -73,7 +73,7 @@ export const login = async( req, res, next ) => {
         if( !email || !password ) {
             return res.status(400).json({
                 success: false,
-                error: 'Please provide email and password',
+                message: 'Please provide email and password',
                 statusCode: 400
             });
         }
@@ -84,7 +84,7 @@ export const login = async( req, res, next ) => {
         if(!user){
             return res.status(401).json({
                 success: false,
-                error: 'Invalid credentials',
+                message: 'Invalid credentials',
                 statusCode: 401
             });
         }
@@ -95,7 +95,7 @@ export const login = async( req, res, next ) => {
         if(!isMatch){
             return res.status(401).json({
                 success: false,
-                error: 'Invalid credentials',
+                message: 'Invalid credentials',
                 statusCode: 401
             });
         }
@@ -161,7 +161,7 @@ export const updateProfile = async( req, res, next ) => {
         if (!user) {
             return res.status(404).json({
                 success: false,
-                error: 'User not found'
+                message: 'User not found'
             });
         }
 
@@ -199,7 +199,7 @@ export const changePassword = async( req, res, next ) => {
         if(!currentPassword || !newPassword){
             return res.status(400).json({
                 success: false,
-                error: 'Please provide current and new password',
+                message: 'Please provide current and new password',
                 statusCode: 400
             });
         }
@@ -212,7 +212,7 @@ export const changePassword = async( req, res, next ) => {
         if(!isMatch){
             return res.status(401).json({
                 success: false,
-                error: 'Current password is Incorrect',
+                message: 'Current password is Incorrect',
                 statusCode: 401
             });
         }
