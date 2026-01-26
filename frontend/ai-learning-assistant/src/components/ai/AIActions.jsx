@@ -25,8 +25,7 @@ const AIActions = () => {
       setIsModalOpen(true);
 
     } catch (error) {
-      console.error('thiss', error);
-      toast.error('Failed to Generate Summary.');
+      toast.error(JSON.parse(error.message)?.error?.message || 'Failed to Generate Summary.');
     } finally {
       setLoadingAction(null);
     }
@@ -52,8 +51,7 @@ const AIActions = () => {
       setConcept("");
 
     } catch (error) {
-      console.error(error)
-      toast.error('Failed to explain concept.')
+      toast.error(JSON.parse(error.message)?.error?.message || 'Failed to explain concept.');
     } finally {
       setLoadingAction(null);
     }

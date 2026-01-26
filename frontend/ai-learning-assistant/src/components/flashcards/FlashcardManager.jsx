@@ -59,7 +59,7 @@ const FlashcardManager = ({documentId}) => {
       fetchFlashcardSets();
 
     } catch (error) {
-      toast.error(error.message || 'Failed to generate flashcards.')
+      toast.error(JSON.parse(error.message)?.error?.message || 'Failed to generate flashcards.');
     } finally {
       setGenerating(false);
     }

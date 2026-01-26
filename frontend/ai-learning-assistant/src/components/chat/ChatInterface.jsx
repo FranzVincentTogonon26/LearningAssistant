@@ -5,6 +5,7 @@ import aiService from '../../services/aiService'
 import { useAuth } from '../../context/AuthContext'
 import Spinner from '../common/Spinner'
 import MarkdownRenderer from '../common/MarkdownRenderer'
+import toast from 'react-hot-toast'
 
 const ChatInterface = () => {
 
@@ -67,7 +68,7 @@ const ChatInterface = () => {
             setHistory(prev => [...prev, assistantMessage]);
 
         } catch (error) {
-            console.error('Chat error:', error);
+            toast.error(JSON.parse(error.message)?.error?.message || 'Chat error');
             const errorMessage = {
                 role: 'assistant',
                 content: 'Sorry, I encountered an error. Please try again.',

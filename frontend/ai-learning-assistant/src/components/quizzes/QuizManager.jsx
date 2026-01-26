@@ -51,8 +51,7 @@ const QuizManager = ({documentId}) => {
             setIsGenerateModalOpen(false);
             fetchQuizzes();
         } catch (error) {
-            console.error(error);
-            toast.error(error.message || 'Failed to generate Quiz');
+            toast.error(JSON.parse(error.message)?.error?.message || 'Failed to generate Quiz');
         } finally {
             setGenerating(false);
         }

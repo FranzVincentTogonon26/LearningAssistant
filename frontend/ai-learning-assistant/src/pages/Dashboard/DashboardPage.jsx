@@ -65,7 +65,6 @@ const DashboardPage = () => {
     }
   ];
 
-
   return (
     <div className="min-h-screen">
       <div className=""> {/* absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] bg-size-[16px_16px] opacity-30 pointer-events-none */}
@@ -120,7 +119,7 @@ const DashboardPage = () => {
                   ...(dashboardData.recentActivity.quizzes || []).map(quiz => ({
                     id: quiz._id,
                     description: quiz.title,
-                    timestamp: quiz.lastAttempted,
+                    timestamp: quiz.createdAt,
                     link: `/quizzes/${quiz._id}`,
                     type: 'quiz'
                   }))

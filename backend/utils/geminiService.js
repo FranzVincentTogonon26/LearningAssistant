@@ -68,10 +68,12 @@ export const generateFlashcards = async ( text, count = 10 ) => {
 
         return flashcards.slice( 0, count );
 
-    } catch ( error ) {
+    } catch ( error ){
 
-        console.error('Gemini API error:', error );
-        throw new Error('Failed to generate flashcard');
+        console.error("Gemini API error:", error);
+        const geminiMessage = error?.error?.message || error?.response?.data?.error?.message || error?.message || "Gemini API request failed";
+
+        throw new Error(geminiMessage);
 
     }
 
@@ -148,8 +150,9 @@ export const generateQuiz = async ( text, numQuestions = 5 ) => {
 
     } catch ( error ){
 
-        console.error('Gemini API error:', error );
-        throw new Error('Failed to generate quiz');
+        console.error("Gemini API error:", error);
+        error = error?.status === 403 ? error.message : error;
+        throw new Error(error);
 
     }
 
@@ -181,8 +184,9 @@ export const generateSummary = async (text) => {
 
      } catch ( error ){
 
-        console.error('Gemini API error:', error );
-        throw new Error('Failed to generate summary');
+        console.error("Gemini API error:", error);
+        error = error?.status === 403 ? error.message : error;
+        throw new Error(error);
 
     }
 
@@ -218,10 +222,11 @@ export const chatWithContext = async (question, chunks) => {
         const generatedText = response.text;
         return generatedText;
 
-    } catch (error) {
+    } catch ( error ){
 
-        console.error('Gemini API error:', error );
-        throw new Error('Failed to process chat request');
+        console.error("Gemini API error:", error);
+        error = error?.status === 403 ? error.message : error;
+        throw new Error(error);
 
     }
 
@@ -252,10 +257,11 @@ export const explainConcept = async (concept, context) => {
         const generatedText = response.text;
         return generatedText;
 
-    } catch (error) {
+    } catch ( error ){
 
-        console.error('Gemini API error:', error );
-        throw new Error('Failed to explain concept');
+        console.error("Gemini API error:", error);
+        error = error?.status === 403 ? error.message : error;
+        throw new Error(error);
 
     }
 
