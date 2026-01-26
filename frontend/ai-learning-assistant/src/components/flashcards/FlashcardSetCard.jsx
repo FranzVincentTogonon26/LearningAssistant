@@ -36,7 +36,7 @@ const FlashcardSetCard = ({ flashcardSet }) => {
 
             {/* Stats */}
             <div className="flex items-center gap-3 pt-2">
-                <div className="px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-lg">
+                <div className="px-3 py-1 bg-slate-50 border border-slate-200 rounded-lg">
                     <span className="text-sm font-semibold text-slate-700"> {totalCards} { totalCards === 1 ? 'Card' : 'Cards' } </span>
                 </div>
                 {

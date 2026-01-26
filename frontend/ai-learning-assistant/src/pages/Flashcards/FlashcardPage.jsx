@@ -130,7 +130,7 @@ const FlashcardPage = () => {
           >
             <ChevronLeft size={16} /> Previous
           </Button>
-          <span className="text-sm text-neutral-600">{ currentCardIndex + 1 } / { flashcards.length }</span>
+          <span className="text-sm text-neutral-600 font-semibold">{ currentCardIndex + 1 } / { flashcards.length }</span>
           <Button
             onClick={handleNextCard}
             variant='secondary'
