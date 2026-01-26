@@ -17,8 +17,7 @@ const FlashcardSetCard = ({ flashcardSet }) => {
 
   return (
     <div 
-        onClick={handleStudyNow}
-        className="group relative bg-white/80 backdrop-blur-xl border-2 border-slate-200 hover:border-emerald-300 rounded-2xl p-6 cursor-pointer transition-all duration-200 hover:shadow-lg hover:shadow-emerald-500/10 flex flex-col justify-between"
+        className="group relative bg-white/80 backdrop-blur-xl border-2 border-slate-200 hover:border-emerald-300 rounded-2xl p-6  transition-all duration-200 hover:shadow-lg hover:shadow-emerald-500/10 flex flex-col justify-between"
     >
         <div className="space-y-4">
 
@@ -79,7 +78,7 @@ const FlashcardSetCard = ({ flashcardSet }) => {
         {/* Study Button */}
         <div className="mt-6 pt-t border-t border-slate-100">
             <button 
-                className="group/btn relative w-full h-11 bg-linear-to-r from-emerald-50 to-teal-100 hover:from-emerald-600 hover:to-teal-600 text-emerald-700 hover:text-white font-semibold text-sm rounded-xl transition-all duration-200 active:scale-95 overflow-hidden"
+                className="group/btn relative w-full h-11 bg-linear-to-r from-emerald-50 to-teal-100 cursor-pointer hover:from-emerald-600 hover:to-teal-600 text-emerald-700 hover:text-white font-semibold text-sm rounded-xl transition-all duration-200 active:scale-95 overflow-hidden"
                 onClick={(e) => {
                     e.stopPropagation();
                     handleStudyNow();

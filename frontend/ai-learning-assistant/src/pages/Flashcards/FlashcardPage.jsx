@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import { ArrowLeft, ChevronLeft, ChevronRight, Plus } from 'lucide-react'
+import { ArrowLeft, ChevronLeft, ChevronRight, Plus, Trash2 } from 'lucide-react'
 import toast from 'react-hot-toast'
 
 import flashcardService from '../../services/flashcardService'
@@ -84,7 +84,7 @@ const FlashcardPage = () => {
     try {
 
       await flashcardService.reviewFlashcard(currentCard._id, index);
-      toast.success('Falshcard reviewed.')
+      toast.success('Flashcard reviewed.')
 
     } catch (error) {
       console.error(error);
@@ -119,7 +119,7 @@ const FlashcardPage = () => {
 
     return (
       <div className="flex flex-col items-center space-y-6">
-        <div className="w-full max-w-md">
+        <div className="w-full max-w-4xl ">
           <Flashcard flashcard={currentCard} />
         </div>
         <div className="flex items-center gap-4">
@@ -147,17 +147,18 @@ const FlashcardPage = () => {
 
   return (
     <div>
-      <div className="">
-        <Link to={`/documents/${documentId}`} className='' >
+      <div className="mb-4">
+        <Link to={`/documents/${documentId}`} className='inline-flex items-center gap-2 text-sm text-neutral-600 hover:text-neutral-900 transition-colors' >
           <ArrowLeft size={16} />
-          Back to Documents 
+          Go to Documents 
         </Link>
       </div>
-      <PageHeader title='Flashcards' >
-        <div className="">
-          
-        </div>
-      </PageHeader>
+      <div className="flex items-center justify-between mb-6">
+        <h1 className="text-2xl font-medium text-slate-900 tracking-tight mb-2">Flashcards</h1>
+    </div>
+
+      {renderFlashcardContent()}
+
     </div>
   )
 }

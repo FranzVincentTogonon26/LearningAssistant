@@ -41,7 +41,7 @@ const FlashcardPage = () => {
       return (
         <EmptyState
           title='No Flashcard Sets Found'
-          description = "You haven't genrated any flashcards yet. Go to a document to create your first set. "
+          description = "You haven't generated any flashcards yet. Go to a document to create your first set. "
         />
       )
     };
