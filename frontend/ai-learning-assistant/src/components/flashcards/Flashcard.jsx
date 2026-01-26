@@ -32,17 +32,17 @@ const Flashcard = ({ flashcard }) => {
             WebkitBackfaceVisibility: 'hidden'
           }}
         >
-          <div className="flex items-start justify-between">
-            <div className={`flex items-center gap-1.5 px-2 py-1.5 bg-linear-to-br ${ difficultyColor[flashcard?.difficulty] || '' } shadow-sm rounded-sm uppercase`}>
-              <span className="text-xs font-semibold text-white" >{flashcard?.difficulty}</span>
-            </div>
-          </div>
+          
 
           {/* Question Content */}
           <div className="flex-1 flex items-center justify-center px-4 py-6">
               <p className="text-lg font-semibold text-slate-900 text-center leading-relaxed">{flashcard.question}</p>
           </div>
-
+          <div className="flex items-start justify-center py-3">
+            <div className={`flex items-center gap-1.5 px-2 py-1.5 bg-linear-to-br ${ difficultyColor[flashcard?.difficulty] || '' } shadow-sm rounded-sm uppercase`}>
+              <span className="text-xs font-semibold text-white" >{flashcard?.difficulty}</span>
+            </div>
+          </div>
           {/* Flip Indicator */}
           <div className="flex items-center justify-center gap-2 text-xs text-slate-400 font-medium">
             <RotateCcw className='w-3.5 h-3.5' strokeWidth={2} />
