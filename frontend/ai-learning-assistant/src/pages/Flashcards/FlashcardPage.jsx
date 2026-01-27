@@ -4,7 +4,6 @@ import { ArrowLeft, ChevronLeft, ChevronRight, Plus, Trash2 } from 'lucide-react
 import toast from 'react-hot-toast'
 
 import flashcardService from '../../services/flashcardService'
-import aiService from '../../services/aiService'
 import PageHeader from '../../components/common/PageHeader'
 import Spinner from '../../components/common/Spinner'
 import EmptyState from '../../components/common/EmptyState'
@@ -15,53 +14,30 @@ import Flashcard from '../../components/flashcards/Flashcard'
 const FlashcardPage = () => {
 
   const { id: documentId } = useParams();
-  const [flashcardSets, setFlashcardSets] = useState([]);
   const [flashcards, setFlashcards] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [generating, setGenerating] = useState(false);
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
-  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-  const [deleting, setDeleting] = useState(false);
-
-  const fetchFlashcards = async () => {
-
-    setLoading(true);
-
-    try {
-
-      const response = await flashcardService.getFlashcardForDocument(documentId);
-
-      setFlashcardSets(response.data[0]);
-      setFlashcards(response.data[0]?.cards || []);
-
-    } catch (error) {
-      console.error(error);
-      toast.error('Failed to fetch flashcards.')
-    } finally {
-      setLoading(false);
-    }
-
-  };
 
   useEffect(() => {
-    fetchFlashcards();
-  }, [documentId]);
 
-  const handleGenerateFlashcards = async () => {
-    setGenerating(true);
+    const fetchFlashcards = async () => {
+      setLoading(true);
+      try {
 
-      try { 
-        await aiService.generateFlashcards(documentId);
-        toast.success('Flashcards generated successfully.')
-        fetchFlashcards();
+        const response = await flashcardService.getFlashcardForDocument(documentId);
+        setFlashcards(response.data[0]?.cards || []);
+
       } catch (error) {
         console.error(error);
-        toast.error( error.message || 'Failed to generate flashcards.')
+        toast.error('Failed to fetch flashcards.')
       } finally {
-        setGenerating(false)
+        setLoading(false);
       }
 
-  };
+    };
+
+    fetchFlashcards();
+  }, [documentId]);
 
   const handleNextCard = () => {
     handleReview(currentCardIndex);
@@ -92,23 +68,6 @@ const FlashcardPage = () => {
     } 
 
   };
-
-  const handleDeleteFlashcardSet = async () => {
-    setDeleting(true);
-    try {
-
-      await flashcardService.deleteFlashcard(flashcardSets._id);
-      toast.success('Flashcard set deleted successfully');
-      setIsDeleteModalOpen(false);
-      fetchFlashcards();
-
-    } catch (error) {
-      console.error(error);
-      toast.error(error.message || 'Failed to delete flashcard set.');
-    } finally {
-      setDeleting(false);
-    }
-  }
 
   const renderFlashcardContent = () => {
     if(loading){
