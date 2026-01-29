@@ -5,6 +5,7 @@ const Tabs = ({
     activeTab,
     setActiveTab
 }) => {
+
   return (
     <div className="w-full">
         <div className="relative border-b-2 border-slate-200">
@@ -15,7 +16,7 @@ const Tabs = ({
                         key={tab.name}
                         onClick={() => setActiveTab(tab.name)}
                     >
-                        <span className="relative z-10">{tab.label}</span>
+                        <span className="relative z-10">{tab.label}</span> 
 
                         { activeTab === tab.name && (
                             <div className='absolute bottom-0 left-0 right-0 h-0.5 bg-linear-to-r from-emerald-500 to-teal-500 rounded-full shadow-lg shadow-emerald-500/25' />

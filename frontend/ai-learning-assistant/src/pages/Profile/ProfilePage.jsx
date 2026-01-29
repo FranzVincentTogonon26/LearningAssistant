@@ -3,7 +3,7 @@ import PageHeader from '../../components/common/PageHeader'
 import Button from '../../components/common/Button'
 import Spinner from '../..//components/common/Spinner'
 import authService from '../../services/authService'
-import { useAuth } from '../../context/AuthContext'
+// import { useAuth } from '../../context/AuthContext'
 import toast from 'react-hot-toast'
 import { Lock, Mail, User } from 'lucide-react'
 
@@ -11,6 +11,7 @@ const ProfilePage = () => {
 
   const [loading, setLoading] = useState(true);
   const [passwordLoading, setPasswordLoading] = useState(false);
+  const [profileLoading, setProfileLoading] = useState(false);
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [currentPassword, setCurrentPassword] = useState('');
@@ -35,7 +36,26 @@ const ProfilePage = () => {
 
     fetchProfile();
 
-  });
+  }, []);
+
+  const handleUpdateProfile =  async (e) => {
+    e.preventDefault();
+
+    setProfileLoading(true);
+
+    try {
+
+      await authService.updateProfile({username, email});
+      toast.success('Profile Update successfully');
+
+    } catch ( error ) {
+      console.error(error);
+      toast.error(error.message || 'Failed to Update Profile.')
+    } finally {
+      setProfileLoading(false)
+    }
+
+  }
 
   const handleChangePassword =  async (e) => {
     e.preventDefault();
@@ -84,29 +104,46 @@ const ProfilePage = () => {
           <h3 className="text-lg font-semibold text-neutral-900 mb-4">User Information</h3>
           <div className="space-y-4">
 
+          <form onSubmit={handleUpdateProfile} className="space-y-4">
+
             <div>
               <label className="block text-xs font-medium text-neutral-700 mb-1.5">Username</label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                   <User className='h-4 w-4 text-neutral-400' />
                 </div>
-                <p className="w-full h-9 pl-9 pr-3 pt-2 border border-neutral-200 rounded-lg bg-neutral-50 text-sm text-neutral-900">
-                  {username}
-                </p>
+                <input 
+                  type="text" 
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  required
+                  className='w-full h-9 pl-9 pr-3 border border-neutral-200 rounded-lg bg-white text-sm text-neutral-900 placeholder-neutral-400 transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-[#00d492] focus:border-transparent'
+                />
               </div>
             </div>
 
             <div>
-              <label className="lock text-xs font-medium text-neutral-700 mb-1.5">Email Address</label>
+              <label className="block text-xs font-medium text-neutral-700 mb-1.5">Email Address</label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                   <Mail className='h-4 w-4 text-neutral-400' />
                 </div>
-                <p className="w-full h-9 pl-9 pr-3 pt-2 border border-neutral-200 rounded-lg bg-neutral-50 text-sm text-neutral-900">
-                  {email}
-                </p>
+                <input 
+                  type="text" 
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  className='w-full h-9 pl-9 pr-3 border border-neutral-200 rounded-lg bg-white text-sm text-neutral-900 placeholder-neutral-400 transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-[#00d492] focus:border-transparent'
+                />
               </div>
             </div>
+
+            <div className="flex justify-end">
+              <Button type='submit' disabled={profileLoading} >
+                {profileLoading ? 'Updating..' : 'Update Profile' }
+              </Button>
+            </div> 
+          </form>
 
           </div>
         </div>

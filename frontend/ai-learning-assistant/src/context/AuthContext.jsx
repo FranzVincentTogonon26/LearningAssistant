@@ -1,9 +1,10 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useCallback, useContext, useEffect, useState } from "react";
 
 const AuthContext = createContext();
 
 export const useAuth = () => {
     const context = useContext(AuthContext);
+
     if(!context){
         throw new Error("useAuth must be used within an AuthProvider");
     }
@@ -15,29 +16,27 @@ export const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-    useEffect(() => {
-        checkAuthStatus();
-    }, []);
-
-    const checkAuthStatus = async () => {
+    const checkAuthStatus = useCallback(async () => {
         try {
-
             const token = localStorage.getItem('token');
             const userStr = localStorage.getItem('user');
 
-            if(token && userStr){
+            if (token && userStr) {
                 const userData = JSON.parse(userStr);
                 setUser(userData);
                 setIsAuthenticated(true);
             }
-
         } catch (error) {
             console.error('Auth check failed:', error);
             logout();
         } finally {
             setLoading(false);
         }
-    };
+    }, []);
+
+    useEffect(() => {
+        checkAuthStatus();
+    }, [checkAuthStatus]);
 
     const login = ( userData, token ) => {
 

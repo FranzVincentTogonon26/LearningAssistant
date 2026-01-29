@@ -48,7 +48,6 @@ const DocumentDetailsPage = () => {
       return filePath;
     }
 
-    // const baseUrl = process.env.REACT_APP_API_URL || 'http://localhost:8000';
     return `${BASE_URL}${filePath.startsWith('/') ? '' : '/'}${filePath}`;
 
   };
@@ -83,7 +82,6 @@ const DocumentDetailsPage = () => {
         <div className="bg-gray-100 p-1">
           <iframe 
             src={pdfUrl}
-            // frameBorder="0"
             className='w-full h-[70vh] bg-white rounded border-gray-300'
             title='PDF Viewer'
             style={{

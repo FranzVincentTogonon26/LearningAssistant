@@ -65,6 +65,7 @@ export const register = async ( req, res, next ) => {
 // @access Public
 
 export const login = async( req, res, next ) => {
+     
     try {
 
         const { email, password } = req.body;
@@ -115,7 +116,6 @@ export const login = async( req, res, next ) => {
             message: 'Login Successful'
         });
 
-
     } catch(error) {
         next(error);
     }
@@ -154,7 +154,7 @@ export const getProfile = async( req, res, next ) => {
 export const updateProfile = async( req, res, next ) => {
     try {
         
-        const { username, email, profileImage } = req.body;
+        const { username, email } = req.body;
 
         const user = await User.findById(req.user._id);
         
@@ -167,7 +167,7 @@ export const updateProfile = async( req, res, next ) => {
 
         if (username) user.username = username;
         if (email) user.email = email;
-        if (profileImage) user.profileImage = profileImage;
+        // if (profileImage) user.profileImage = profileImage;
 
         await user.save();
 
@@ -177,7 +177,7 @@ export const updateProfile = async( req, res, next ) => {
                 id: user._id,
                 username: user.username,
                 email: user.email,
-                profileImage: user.profileImage
+                // profileImage: user.profileImage
             },
             message: 'Profile updated successfully'
         });

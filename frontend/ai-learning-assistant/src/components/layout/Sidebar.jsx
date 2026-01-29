@@ -5,6 +5,7 @@ import { BookOpen, BrainCircuit, FileText, LayoutDashboard, LogOut, User, X } fr
 
 const Sidebar = ({isSidebarOpen, toggleSidebar}) => {
 
+
   const { logout } = useAuth();
   const navigate = useNavigate();
 
